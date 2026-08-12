@@ -1,3 +1,3 @@
 # This is git and Github tutorial Readme File
 
-Hello from Local
+Hello from Remote
