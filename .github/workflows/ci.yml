@@ -1,21 +1,24 @@
-name: Hello CI
+name: Node CI
 
 on:
   push:
+  pull_request:
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-      - name: Show current folder
-        run: pwd
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '20'
 
-      - name: List files
-        run: ls -la
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
