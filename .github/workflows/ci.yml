@@ -15,7 +15,7 @@ env:
   ECR_REPOSITORY: github-actions-demo
 
 jobs:
-  test:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -45,20 +45,3 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v7
-      #   with:
-      #     node-version: '20'
-
-      # - name: Install dependencies
-      #   run: npm install
-
-      # - name: Run tests
-      #   run: npm test
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - run: echo "Build only runs after test passes"
